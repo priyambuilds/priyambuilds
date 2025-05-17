@@ -57,3 +57,4 @@ jobs:
           plugin_habits_charts: yes
           plugin_followup: yes
           plugin_lines: yes
+          

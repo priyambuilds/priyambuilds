@@ -1,21 +1,45 @@
 name: Metrics
 on:
-  schedule: [{cron: "0 * * * *"}]
-  workflow_dispatch:
-  push: {branches: ["master", "main"]}
+  schedule: [{ cron: "0 * * * *" }]    # Run every hour
+  workflow_dispatch:                  # Manual trigger
+  push: { branches: ["master", "main"] }  # On push to main
+
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: Generate metrics
+      - name: Generate and commit profile metrics
         uses: lowlighter/metrics@latest
         with:
-          filename: metrics.classic.svg
+          # Output file in your repo
+          filename: metrics.profile.svg
+          # Your GitHub PAT stored in Secrets
           token: ${{ secrets.METRICS_TOKEN }}
-          base: header, repositories
-          plugin_lines: yes
+
+          # Core sections
+          base: header, repositories, community, contributions, organizations
+
+          # Language breakdown
           plugin_languages: yes
-          plugin_achievements: yes
+          plugin_languages_limit: 6
+          plugin_languages_ignored: html, css
+
+          # Commit calendar (isometric style)
+          plugin_calendar: isometric
+
+          # Coding habits over time
+          plugin_habits: yes
+
+          # Total lines added/removed
+          plugin_lines: yes
+
+          # Pull requests stats
+          plugin_pull_requests: yes
+
+          # Issues stats
+          plugin_issues: yes
+
+          # Commit the SVG back to the repo
           output_action: commit

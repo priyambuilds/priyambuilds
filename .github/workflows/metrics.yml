@@ -4,7 +4,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  # ─── Your regular “metrics.svg” ─────────────────────────────────────────────────────
   github-metrics:
     runs-on: ubuntu-latest
     steps:
@@ -14,36 +13,24 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           config_timezone: Asia/Kolkata
 
+          # ─── Base (header + footer metadata) ───────────────────────────────
           base: header, metadata
 
-          # ─── 16Personalities ────────────────────────────────────────────────────
-          plugin_16personalities: yes
-          plugin_16personalities_url: "https://www.16personalities.com/profiles/9706d36988477"
+          # ─── Explicit order of panels ─────────────────────────────────────
+          config_order: |
+            base.header,        # 1. default header
+            isocalendar,        # 2. contributions calendar
+            wakatime,           # 3. WakaTime activity
+            languages,          # 4. most used languages
+            topics,             # 5. starred topics
+            leetcode,           # 6. LeetCode stats
+            base.metadata       # footer
 
-          # Contributions calendar
+          # 2. Contributions calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
 
-          # Languages
-          plugin_languages: yes
-          plugin_languages_ignored: html, css
-          plugin_languages_sections: most-used
-          plugin_languages_details: percentage, lines
-          plugin_languages_limit: 10
-
-          # Starred topics
-          plugin_topics: yes
-          plugin_topics_limit: 0
-          plugin_topics_mode: icons
-
-          # disable other community bits
-          plugin_people: no
-          plugin_repositories: no
-          plugin_sponsors: no
-          plugin_followup: no
-          plugin_achievements: no
-
-          # ─── WakaTime coding activity ──────────────────────────────────────────
+          # 3. WakaTime coding activity
           plugin_wakatime: yes
           plugin_wakatime_token: ${{ secrets.WAKATIME_API_KEY }}
           plugin_wakatime_sections: time, projects, projects-graphs, languages, languages-graphs, editors, os
@@ -51,23 +38,25 @@ jobs:
           plugin_wakatime_url: https://wakatime.com
           plugin_wakatime_user: current
 
+          # 4. Languages
+          plugin_languages: yes
+          plugin_languages_ignored: html, css
+          plugin_languages_sections: most-used
+          plugin_languages_details: percentage, lines
+          plugin_languages_limit: 10
 
-          # ─── LeetCode stats ─────────────────────────────────────────────────────
+          # 5. Starred topics
+          plugin_topics: yes
+          plugin_topics_limit: 0
+          plugin_topics_mode: icons
+
+          # 6. LeetCode stats
           plugin_leetcode: yes
-          plugin_leetcode_user: priyambuilds    # ← your LeetCode username
-  # … your other jobs …
+          plugin_leetcode_user: priyambuilds
 
-  personality-metrics:
-    name: MBTI Personality profile
-    runs-on: ubuntu-latest
-    steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.plugin.16personalities.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-          base: ""  
-          plugin_16personalities: yes
-          plugin_16personalities_url: "https://www.16personalities.com/profiles/9706d36988477"
-          plugin_16personalities_sections: personality, traits
-          plugin_16personalities_scores: no
-
+          # ─── Turn off any other panels ───────────────────────────────────────
+          plugin_people: no
+          plugin_repositories: no
+          plugin_sponsors: no
+          plugin_followup: no
+          plugin_achievements: no

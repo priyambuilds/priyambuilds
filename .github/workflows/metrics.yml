@@ -38,6 +38,9 @@ jobs:
           plugin_habits_facts: no
           plugin_habits_charts: yes
 
+           # ── Add this line to disable language activity ─────────────
+          plugin_habits_languages_limit: 0       # ← setting to 0 turns it off :contentReference[oaicite:0]{index=0}
+
           # ─── Disable everything else ────────────────────────────────────
           plugin_people: no
           plugin_repositories: no

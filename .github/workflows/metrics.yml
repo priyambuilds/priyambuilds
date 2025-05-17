@@ -55,8 +55,8 @@ jobs:
           plugin_lines: yes
 
           # ✅ 16personalities plugin
+          filename: metrics.plugin.16personalities.svg
           plugin_16personalities: yes
           plugin_16personalities_url: "https://www.16personalities.com/profiles/9706d36988477"
-
-          # ⬇️ Save to file
-          filename: metrics.plugin.16personalities.svg
+          plugin_16personalities_sections: personality, traits
+          plugin_16personalities_scores: yes

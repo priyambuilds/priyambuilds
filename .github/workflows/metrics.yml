@@ -52,4 +52,4 @@ jobs:
           plugin_leetcode: yes
           plugin_leetcode_user: priyambuilds    # ← your LeetCode username
 
-          config_order: base.header, isocalendar, wakatime, languages, stars, leetcode
+          config_order: base.header, isocalendar, wakatime, languages, topics, leetcode

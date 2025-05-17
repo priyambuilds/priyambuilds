@@ -55,5 +55,19 @@ jobs:
           # ─── LeetCode stats ─────────────────────────────────────────────────────
           plugin_leetcode: yes
           plugin_leetcode_user: priyambuilds    # ← your LeetCode username
+  # … your other jobs …
 
-          
+  personality-metrics:
+    name: MBTI Personality profile
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.plugin.16personalities.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""  
+          plugin_16personalities: yes
+          plugin_16personalities_url: "https://www.16personalities.com/profiles/9706d36988477"
+          plugin_16personalities_sections: personality, traits
+          plugin_16personalities_scores: no
+

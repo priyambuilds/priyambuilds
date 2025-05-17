@@ -16,6 +16,10 @@ jobs:
 
           base: header, metadata
 
+          # ─── 16Personalities ────────────────────────────────────────────────────
+          plugin_16personalities: yes
+          plugin_16personalities_url: "https://www.16personalities.com/profiles/9706d36988477"
+
           # Contributions calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
@@ -25,13 +29,12 @@ jobs:
           plugin_languages_ignored: html, css
           plugin_languages_sections: most-used
           plugin_languages_details: percentage, lines
-          plugin_languages_limit: 8
+          plugin_languages_limit: 10
 
           # Starred topics
           plugin_topics: yes
           plugin_topics_limit: 0
           plugin_topics_mode: icons
-          plugin_topics_filter: python, pytorch, tensorflow, javascript
 
           # disable other community bits
           plugin_people: no
@@ -43,10 +46,11 @@ jobs:
           # ─── WakaTime coding activity ──────────────────────────────────────────
           plugin_wakatime: yes
           plugin_wakatime_token: ${{ secrets.WAKATIME_API_KEY }}
-          plugin_wakatime_sections: time, projects, languages, editors, os
+          plugin_wakatime_sections: time, projects, projects-graphs, languages, languages-graphs, editors, os
           plugin_wakatime_limit: 5
           plugin_wakatime_url: https://wakatime.com
           plugin_wakatime_user: current
+
 
           # ─── LeetCode stats ─────────────────────────────────────────────────────
           plugin_leetcode: yes

@@ -1,2 +1,2 @@
-<!-- Main GitHub metrics (calendar, languages, topics) -->
 ![GitHub Metrics](./metrics.svg)
+![MBTI Personality profile](./metrics.plugin.16personalities.svg)

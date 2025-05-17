@@ -29,6 +29,8 @@ jobs:
             languages,
             topics,
             stargazers,
+            leetcode,
+            wakatime,
             16personalities,
             base.repositories,
             achievements,
@@ -52,3 +54,15 @@ jobs:
 
           plugin_16personalities: yes
           plugin_16personalities_url: "https://www.16personalities.com/profiles/9706d36988477"
+
+          # ✅ LeetCode Plugin
+          plugin_leetcode: yes
+          plugin_leetcode_user: priyambuilds  # Replace with your actual LeetCode username
+
+          # ✅ WakaTime Plugin
+          plugin_wakatime: yes
+          plugin_wakatime_token: ${{ secrets.WAKATIME_API_KEY }}
+          plugin_wakatime_sections: time, projects, languages, editors, os
+          plugin_wakatime_limit: 5
+          plugin_wakatime_url: https://wakatime.com
+          plugin_wakatime_user: current

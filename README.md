@@ -4,8 +4,8 @@
 <!-- Languages breakdown -->
 ![Languages](./metrics.languages.svg)
 
-<!-- Commit Calendar -->
-![Calendar](./metrics.calendar.svg)
+<!-- Personality Type -->
+![16personalities](./metrics.plugin.16personalities.svg)
 
 <!-- Habits -->
 ![Habits](./metrics.habits.svg)

@@ -8,4 +8,5 @@
 ![Habits](./metrics.habits.svg)
 
 <!-- 16personalities -->
-![16personalities](./metrics.plugin.16personalities.svg)
+![16Personalities Metrics](./metrics.plugin.16personalities.svg)
+

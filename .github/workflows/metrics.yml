@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
+  # ─── Your regular “metrics.svg” ─────────────────────────────────────────────────────
   github-metrics:
     runs-on: ubuntu-latest
     steps:
@@ -13,24 +14,32 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           config_timezone: Asia/Kolkata
 
-          # ─── Base (header + footer metadata) ───────────────────────────────
           base: header, metadata
 
-          # ─── Explicit order of panels ─────────────────────────────────────
-          config_order: |
-            base.header,        # 1. default header
-            isocalendar,        # 2. contributions calendar
-            wakatime,           # 3. WakaTime activity
-            languages,          # 4. most used languages
-            topics,             # 5. starred topics
-            leetcode,           # 6. LeetCode stats
-            base.metadata       # footer
-
-          # 2. Contributions calendar
+          # Contributions calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
 
-          # 3. WakaTime coding activity
+          # Languages
+          plugin_languages: yes
+          plugin_languages_ignored: html, css
+          plugin_languages_sections: most-used
+          plugin_languages_details: percentage, lines
+          plugin_languages_limit: 10
+
+          # Starred topics
+          plugin_topics: yes
+          plugin_topics_limit: 0
+          plugin_topics_mode: icons
+
+          # disable other community bits
+          plugin_people: no
+          plugin_repositories: no
+          plugin_sponsors: no
+          plugin_followup: no
+          plugin_achievements: no
+
+          # ─── WakaTime coding activity ──────────────────────────────────────────
           plugin_wakatime: yes
           plugin_wakatime_token: ${{ secrets.WAKATIME_API_KEY }}
           plugin_wakatime_sections: time, projects, projects-graphs, languages, languages-graphs, editors, os
@@ -38,25 +47,9 @@ jobs:
           plugin_wakatime_url: https://wakatime.com
           plugin_wakatime_user: current
 
-          # 4. Languages
-          plugin_languages: yes
-          plugin_languages_ignored: html, css
-          plugin_languages_sections: most-used
-          plugin_languages_details: percentage, lines
-          plugin_languages_limit: 10
 
-          # 5. Starred topics
-          plugin_topics: yes
-          plugin_topics_limit: 0
-          plugin_topics_mode: icons
-
-          # 6. LeetCode stats
+          # ─── LeetCode stats ─────────────────────────────────────────────────────
           plugin_leetcode: yes
-          plugin_leetcode_user: priyambuilds
+          plugin_leetcode_user: priyambuilds    # ← your LeetCode username
 
-          # ─── Turn off any other panels ───────────────────────────────────────
-          plugin_people: no
-          plugin_repositories: no
-          plugin_sponsors: no
-          plugin_followup: no
-          plugin_achievements: no
+          config_order: base.header, isocalendar, wakatime, languages, stars, leetcode

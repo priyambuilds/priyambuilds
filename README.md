@@ -1,12 +1,17 @@
-<!-- Profile overview -->
-![Profile Metrics](./metrics.profile.svg)
+<!-- Profile Overview -->
+![Profile Metrics](./metrics.svg)
 
-<!-- Languages breakdown -->
+<!-- Languages Breakdown -->
 ![Languages](./metrics.languages.svg)
 
-<!-- Habits -->
+<!-- Coding Habits -->
 ![Habits](./metrics.habits.svg)
 
-<!-- 16personalities -->
+<!-- 16Personalities -->
 ![16Personalities Metrics](./metrics.plugin.16personalities.svg)
 
+<!-- LeetCode Stats -->
+![LeetCode Stats](./metrics.plugin.leetcode.svg)
+
+<!-- WakaTime Coding Activity -->
+![WakaTime Stats](./metrics.plugin.wakatime.svg)

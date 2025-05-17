@@ -40,18 +40,16 @@ jobs:
           plugin_followup: no
           plugin_achievements: no
 
-  # ─── A brand-new “habits-charts.svg” ─────────────────────────────────────────────────
-  habits-charts:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          filename: habits-charts.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-          base: ""                     # no header / footer, just the charts
-          config_timezone: Asia/Kolkata
+          # ─── WakaTime coding activity ──────────────────────────────────────────
+          plugin_wakatime: yes
+          plugin_wakatime_token: ${{ secrets.WAKATIME_API_KEY }}
+          plugin_wakatime_sections: time, projects, languages, editors, os
+          plugin_wakatime_limit: 5
+          plugin_wakatime_url: https://wakatime.com
+          plugin_wakatime_user: current
 
-          plugin_habits: yes
-          plugin_habits_facts: no
-          plugin_habits_charts: yes
-          plugin_habits_languages_limit: 0    # ← GUARANTEED off
+          # ─── LeetCode stats ─────────────────────────────────────────────────────
+          plugin_leetcode: yes
+          plugin_leetcode_user: priyambuilds    # ← your LeetCode username
+
+          

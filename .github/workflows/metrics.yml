@@ -24,7 +24,7 @@ jobs:
           plugin_languages_limit: 8
 
           plugin_stars: yes
-          plugin_stars_limit: 4
+          plugin_stars_limit: 5
 
           plugin_topics: yes
           plugin_topics_mode: icons

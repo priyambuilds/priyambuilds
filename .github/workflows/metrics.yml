@@ -1,45 +1,68 @@
 name: Metrics
 on:
-  schedule: [{ cron: "0 * * * *" }]    # Run every hour
-  workflow_dispatch:                  # Manual trigger
-  push: { branches: ["master", "main"] }  # On push to main
+  schedule:
+    - cron: "0 * * * *"    # Run every hour :contentReference[oaicite:0]{index=0}
+  workflow_dispatch:       # Manual trigger :contentReference[oaicite:1]{index=1}
+  push:
+    branches: ["main", "master"]  # Also on each push :contentReference[oaicite:2]{index=2}
 
 jobs:
-  github-metrics:
+  generate-metrics:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: write           # Needed to commit files back :contentReference[oaicite:3]{index=3}
     steps:
-      - name: Generate and commit profile metrics
+
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      # 1️⃣ Profile overview (header + repos + community)
+      - name: Generate profile overview
         uses: lowlighter/metrics@latest
         with:
-          # Output file in your repo
           filename: metrics.profile.svg
-          # Your GitHub PAT stored in Secrets
           token: ${{ secrets.METRICS_TOKEN }}
+          base: header, repositories, community, contributions, organizations :contentReference[oaicite:4]{index=4}
+          output_action: commit      # Commit this SVG back :contentReference[oaicite:5]{index=5}
 
-          # Core sections
-          base: header, repositories, community, contributions, organizations
-
-          # Language breakdown
+      # 2️⃣ Languages breakdown
+      - name: Generate languages widget
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.languages.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
           plugin_languages: yes
           plugin_languages_limit: 6
-          plugin_languages_ignored: html, css
+          plugin_languages_ignored: html, css :contentReference[oaicite:6]{index=6}
+          output_action: commit
 
-          # Commit calendar (isometric style)
-          plugin_calendar: isometric
+      # 3️⃣ Isometric commit calendar (half-year view)
+      - name: Generate commit calendar
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.calendar.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          plugin_calendar: isometric      # Half‑year layout :contentReference[oaicite:7]{index=7}
+          output_action: commit
 
-          # Coding habits over time
-          plugin_habits: yes
+      # 5️⃣ Coding habits over time
+      - name: Generate habits widget
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.habits.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          plugin_habits: yes            # Heatmap of your workflow :contentReference[oaicite:9]{index=9}
+          output_action: commit
 
-          # Total lines added/removed
-          plugin_lines: yes
-
-          # Pull requests stats
-          plugin_pull_requests: yes
-
-          # Issues stats
-          plugin_issues: yes
-
-          # Commit the SVG back to the repo
+      # 6️⃣ Follow‑up (issues & PRs)
+      - name: Generate follow‑up stats
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics.followup.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""
+          plugin_followup: yes          # Open vs closed ratios :contentReference[oaicite:10]{index=10}
           output_action: commit

@@ -1,6 +1,6 @@
 name: Metrics
 on:
-  schedule: [{cron: "0 0 * * *"}] # Every day at midnight UTC
+  schedule: [{cron: "0 0 * * *"}] # daily at midnight UTC
   workflow_dispatch:
 
 jobs:
@@ -12,23 +12,35 @@ jobs:
           filename: metrics.svg
           token: ${{ secrets.METRICS_TOKEN }}
           config_timezone: Asia/Kolkata
-          
-          # Base sections — only keep header and metadata
+
+          # ─── Base ─────────────────────────────────────────────────────────
           base: header, metadata
-          
-          # 🗓️ Contributions calendar first
+
+          # ─── Contributions calendar ──────────────────────────────────────
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
 
-          # 🈯 Language usage next
+          # ─── Language usage ──────────────────────────────────────────────
           plugin_languages: yes
           plugin_languages_ignored: html, css
           plugin_languages_sections: most-used
           plugin_languages_details: percentage, lines
           plugin_languages_limit: 8
 
-          # ⭐ Starred topics last
+          # ─── Starred topics ──────────────────────────────────────────────
           plugin_topics: yes
           plugin_topics_limit: 0
           plugin_topics_mode: icons
           plugin_topics_filter: python, pytorch, tensorflow, javascript
+
+          # ─── Recent activity charts (Habits) ─────────────────────────────
+          plugin_habits: yes
+          plugin_habits_facts: no
+          plugin_habits_charts: yes
+
+          # ─── Disable everything else ────────────────────────────────────
+          plugin_people: no
+          plugin_repositories: no
+          plugin_sponsors: no
+          plugin_followup: no
+          plugin_achievements: no

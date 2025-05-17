@@ -4,8 +4,8 @@
 <!-- Languages breakdown -->
 ![Languages](./metrics.languages.svg)
 
-<!-- Personality Type -->
-![16personalities](./metrics.plugin.16personalities.svg)
-
 <!-- Habits -->
 ![Habits](./metrics.habits.svg)
+
+<!-- 16personalities -->
+![16personalities](./metrics.plugin.16personalities.svg)

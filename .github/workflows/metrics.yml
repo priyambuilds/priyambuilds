@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
+  # ─── Your regular “metrics.svg” ─────────────────────────────────────────────────────
   github-metrics:
     runs-on: ubuntu-latest
     steps:
@@ -13,35 +14,44 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           config_timezone: Asia/Kolkata
 
-          # ─── Base ─────────────────────────────────────────────────────────
           base: header, metadata
 
-          # ─── Contributions calendar ──────────────────────────────────────
+          # Contributions calendar
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
 
-          # ─── Language usage ──────────────────────────────────────────────
+          # Languages
           plugin_languages: yes
           plugin_languages_ignored: html, css
           plugin_languages_sections: most-used
           plugin_languages_details: percentage, lines
           plugin_languages_limit: 8
 
-          # ─── Starred topics ──────────────────────────────────────────────
+          # Starred topics
           plugin_topics: yes
           plugin_topics_limit: 0
           plugin_topics_mode: icons
           plugin_topics_filter: python, pytorch, tensorflow, javascript
 
-          # ─── Recent activity charts (Habits) ─────────────────────────────
-          plugin_habits: yes
-          plugin_habits_facts: no
-          plugin_habits_charts: yes
-          plugin_habits_languages_limit: 0    # ← disable the “Language activity” bar
-
-          # ─── Disable everything else ────────────────────────────────────
+          # disable other community bits
           plugin_people: no
           plugin_repositories: no
           plugin_sponsors: no
           plugin_followup: no
           plugin_achievements: no
+
+  # ─── A brand-new “habits-charts.svg” ─────────────────────────────────────────────────
+  habits-charts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: habits-charts.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          base: ""                     # no header / footer, just the charts
+          config_timezone: Asia/Kolkata
+
+          plugin_habits: yes
+          plugin_habits_facts: no
+          plugin_habits_charts: yes
+          plugin_habits_languages_limit: 0    # ← GUARANTEED off

@@ -51,5 +51,6 @@ jobs:
           # ─── LeetCode stats ─────────────────────────────────────────────────────
           plugin_leetcode: yes
           plugin_leetcode_user: priyambuilds    # ← your LeetCode username
+          plugin_leetcode_sections: solved, skills, recent
 
-          config_order: base.header, isocalendar, wakatime, languages, topics, leetcode
+          config_order: base.header, isocalendar, wakatime, languages, Icons, leetcode

@@ -1,1 +1,1 @@
-# priymbuilds
+![Metrics](./metrics.classic.svg)

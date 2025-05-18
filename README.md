@@ -2,7 +2,7 @@
   <tr>
     <td>
 
-<img src="./metrics.svg" width="430"/>
+<img src="./metrics.svg" width="700"/>
 
    </td>
    <td>

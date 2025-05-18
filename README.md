@@ -1,13 +1,32 @@
+<table>
+  <tr>
+    <td>
+
+<img src="./metrics.svg" width="430"/>
+
+   </td>
+   <td>
+
 ```
-📈 METRICS                     |             🧠 ABOUT ME
------------------------------ | --------------------------------------
-GitHub Stats, Commits, etc.   |  Name: Priyam Dey
-(stays in the image)          |  Focus: AI, Python, Systems Thinking
-                              |  Tools: Jupyter, GitHub, Shell (basic)
-                              |  
-                              |  Mission: Build and learn in public.
-                              |  
-                              |  Links:
-                              |    GitHub: priyambuilds
-                              |    Portfolio: yourwebsite.com
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀
+
+🪐 About Me  
+  👤 Priyam Dey  
+  🧠 AI, Python, Systems Thinking  
+  🎯 Mission: Build meaningful tools  
+
+🚀 Currently Learning  
+  ▸ Python scripting  
+  ▸ Automation tools  
+  ▸ Building in public  
+
+🔗 Links  
+  ▸ GitHub: github.com/priyambuilds  
+  ▸ Portfolio: yourwebsite.com
+
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
 ```
+
+   </td>
+  </tr>
+</table>

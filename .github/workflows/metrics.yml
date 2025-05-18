@@ -1,14 +1,25 @@
 name: Metrics
+
 on:
-  schedule: [{cron: "0 0 * * *"}] # daily at midnight UTC
+  schedule:
+    - cron: "0 * * * *"    # every hour at minute 0 UTC
   workflow_dispatch:
 
+permissions:
+  contents: write          # needed to push the committed file
+
 jobs:
-  # ─── Your regular “metrics.svg” ─────────────────────────────────────────────────────
   github-metrics:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: lowlighter/metrics@latest
+      # 1. Checkout the repository so we can commit/push changes
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Generate metrics.svg
+      - name: Generate GitHub metrics
+        uses: lowlighter/metrics@latest
         with:
           filename: metrics.svg
           token: ${{ secrets.METRICS_TOKEN }}
@@ -47,10 +58,18 @@ jobs:
           plugin_wakatime_url: https://wakatime.com
           plugin_wakatime_user: current
 
-
           # ─── LeetCode stats ─────────────────────────────────────────────────────
           plugin_leetcode: yes
-          plugin_leetcode_user: priyambuilds    # ← your LeetCode username
+          plugin_leetcode_user: priyambuilds
           plugin_leetcode_sections: solved, skills, recent
 
           config_order: base.header, isocalendar, wakatime, languages, topics
+
+      # 3. Commit and push the updated metrics.svg back to the repo
+      - name: Commit metrics.svg
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore: update GitHub metrics"
+          file_pattern: metrics.svg
+          author_name: "github-actions[bot]"
+          author_email: "github-actions[bot]@users.noreply.github.com"

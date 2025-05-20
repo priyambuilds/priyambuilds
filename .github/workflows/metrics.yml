@@ -39,8 +39,6 @@ jobs:
           plugin_languages_details: lines, bytes-size, percentage
           plugin_languages_limit: 0
           plugin_languages_indepth: yes
-          plugin_languages_other : yes
-          plugin_languages_categories : programming, data, prose, markup
           plugin_languages_analysis_timeout: 15
 
           # Starred topics

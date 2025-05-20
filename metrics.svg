@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="480" height="945" class="">
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="925" class="">
     <defs>
         <style/>
     </defs>
@@ -1211,9 +1211,8 @@
                         <rect x="0" y="0" width="460" height="8" fill="white" rx="5"/>
                     </mask>
                     <rect mask="url(#languages-bar)" x="0" y="0" width="0" height="8" fill="#d1d5da"/>
-                    <rect mask="url(#languages-bar)" x="0" y="0" width="1.329886276130347" height="8" fill="#DA5B0B"/>
-                    <rect mask="url(#languages-bar)" x="1.329886276130347" y="0" width="0.0013183507074402447" height="8" fill="#3572A5"/>
-                    <rect mask="url(#languages-bar)" x="1.3312046268377873" y="0" width="458.66879537316225" height="8" fill="#ededed"/>
+                    <rect mask="url(#languages-bar)" x="0" y="0" width="459.5444416934885" height="8" fill="#DA5B0B"/>
+                    <rect mask="url(#languages-bar)" x="459.5444416934885" y="0" width="0.45555830651151275" height="8" fill="#3572A5"/>
                 </svg>
                 <div class="row fill-width">
                     <section>
@@ -1227,7 +1226,7 @@
                             <small>
                                 <div>1.21k lines</div>
                                 <div>32.2 kB</div>
-                                <div>0.29%</div>
+                                <div>99.9%</div>
                             </small>
                         </div>
                         <div class="field language details">
@@ -1240,20 +1239,7 @@
                             <small>
                                 <div>1 line</div>
                                 <div>32 bytes</div>
-                                <div>0%</div>
-                            </small>
-                        </div>
-                        <div class="field language details">
-                            <div class="field">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16">
-                                    <path fill="#ededed" fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8z"/>
-                                </svg>
-                                Other
-                            </div>
-                            <small>
-                                <div>24k lines</div>
-                                <div>11.1 MB</div>
-                                <div>99.71%</div>
+                                <div>0.1%</div>
                             </small>
                         </div>
                     </section>
@@ -1356,7 +1342,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 21 May 2025, 00:42:49 (timezone Asia/Kolkata) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 21 May 2025, 01:48:14 (timezone Asia/Kolkata) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>

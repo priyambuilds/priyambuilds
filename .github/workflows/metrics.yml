@@ -37,30 +37,25 @@ jobs:
           plugin_languages_ignored: tex, less, dockerfile, yaml, git-config, makefile, qmake, lex, cmake, shell, gnuplot, vue, scala, ejs
           plugin_languages_sections: most-used
           plugin_languages_details: lines, bytes-size, percentage
-          plugin_languages_limit: 0
+          plugin_languages_limit: 5
           plugin_languages_indepth: yes
           plugin_languages_analysis_timeout: 15
+          plugin_languages_threshold: 2%
+          
 
           # Starred topics
           plugin_topics: yes
           plugin_topics_limit: 0
           plugin_topics_mode: icons
 
-          # disable other community bits
-          plugin_people: no
-          plugin_repositories: no
-          plugin_sponsors: no
-          plugin_followup: no
-          plugin_achievements: no
-
           # ─── WakaTime coding activity ──────────────────────────────────────────
           plugin_wakatime: yes
           plugin_wakatime_token: ${{ secrets.WAKATIME_API_KEY }}
-          plugin_wakatime_sections: time, projects, projects-graphs, languages, languages-graphs, editors, os
+          plugin_wakatime_sections: time, languages, languages-graphs, editors, os
           plugin_wakatime_limit: 5
           plugin_wakatime_url: https://wakatime.com
           plugin_wakatime_user: priyamdey
-          plugin_wakatime_languages_ignored: PowerShell, Shell Script, Nginx configuration file, SmartyConfig, DockerIgnore file, Docker, Makefile, TSConfig, Text, TOML, JSON, YAML, INI, Markdown, Git Config, shell, Git, Bash, GitIgnore file, Image (svg), Env File, nx workspace
+          plugin_wakatime_languages_ignored: Other, PowerShell, Shell Script, Nginx configuration file, SmartyConfig, DockerIgnore file, Docker, Makefile, TSConfig, Text, TOML, JSON, YAML, INI, Markdown, Git Config, shell, Git, Bash, GitIgnore file, Image (svg), Env File, nx workspace
 
           # ─── LeetCode stats ─────────────────────────────────────────────────────
           plugin_leetcode: yes

@@ -55,7 +55,7 @@ jobs:
           plugin_wakatime_limit: 5
           plugin_wakatime_url: https://wakatime.com
           plugin_wakatime_user: priyamdey
-          plugin_wakatime_languages_ignored: Other, PowerShell, Shell Script, Nginx configuration file, SmartyConfig, DockerIgnore file, Docker, Makefile, TSConfig, Text, TOML, JSON, YAML, INI, Markdown, Git Config, shell, Git, Bash, GitIgnore file, Image (svg), Env File, nx workspace
+          plugin_wakatime_languages_ignored: Public Key, Other, PowerShell, Shell Script, Nginx configuration file, SmartyConfig, DockerIgnore file, Docker, Makefile, TSConfig, Text, TOML, JSON, YAML, INI, Markdown, Git Config, shell, Git, Bash, GitIgnore file, Image (svg), Env File, nx workspace
 
           # ─── LeetCode stats ─────────────────────────────────────────────────────
           plugin_leetcode: yes

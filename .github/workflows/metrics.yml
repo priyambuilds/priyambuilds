@@ -65,7 +65,8 @@ jobs:
           plugin_habits: yes
           plugin_habits_days: 30
           plugin_habits_charts: yes
-          plugin_habits_languages_limit: 5
+          plugin_habits_languages_limit: disable
+          plugin_habits_facts: no
 
           config_order: base.header, isocalendar, wakatime, habits, languages, topics
 

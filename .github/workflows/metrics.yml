@@ -2,7 +2,7 @@ name: Metrics
 
 on:
   schedule:
-    - cron: "0 * * * *"    # every hour at minute 0 UTC
+    - cron: "0 * * * * *"    # every hour at minute 0 UTC
   workflow_dispatch:
 
 permissions:

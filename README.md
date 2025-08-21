@@ -1,6 +1,6 @@
 <!-- Banner (optional, custom SVG/pic can be top) -->
 <p align="center">
-  <img src="./banner.svg" alt="Banner" />
+  <img src="Untitled design.png" alt="Banner" />
 </p>
 
 <!-- About Me by metrics plugin -->

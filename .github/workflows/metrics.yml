@@ -15,38 +15,42 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Generate metrics SVG
+      # LEFT COLUMN: Profile, About Me, Personality, etc.
+      - name: Generate left metrics (profile, about, personality)
         uses: lowlighter/metrics@latest
         with:
-          filename: metrics.svg
+          filename: metrics-left.svg
           token: ${{ secrets.METRICS_TOKEN }}
-          config_timezone: Asia/Kolkata
-          config_template: classic
-          base: header, activity, community, repositories, metadata
-          config_order: introduction, isocalendar, base.header, base.activity, base.community, base.repositories, languages
+          user: priyambuilds
+          template: classic
+          base: header, metadata
+          introduction: yes
+          introduction_title: "About Me"
+          # Uncomment below if you want personality, topics, etc.
+          # 16personalities: yes
 
-          # About me block (above calendar)
-          plugin_introduction: yes
-          plugin_introduction_title: "About me"
-          plugin_introduction_emoji: false
+      # RIGHT COLUMN: Calendar, Languages (detailed table)
+      - name: Generate right metrics (calendar, languages)
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics-right.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: priyambuilds
+          template: classic
+          isocalendar: yes
+          isocalendar_duration: half-year
+          languages: yes
+          languages_sections: most-used, recently-used
+          languages_indepth: yes
+          languages_details: bytes-size, percentage, lines
+          languages_limit: 100         # Large number = all
+          languages_analysis_timeout: 60
+          languages_recent_load: 1000
 
-          # Contribution calendar
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year
-
-          # Languages: all, in-depth, unlimited (set very high limit)
-          plugin_languages: yes
-          plugin_languages_sections: most-used, recently-used
-          plugin_languages_indepth: yes
-          plugin_languages_limit: 100
-          plugin_languages_analysis_timeout: 60
-          plugin_languages_recent_load: 1000   # Scan many recent files
-          # REMOVE "plugin_languages_ignored" if not needed.
-
-      - name: Commit metrics.svg
+      - name: Commit metrics SVGs
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "chore: update metrics"
-          file_pattern: metrics.svg
-          author_name: github-actions[bot]
-          author_email: github-actions[bot]@users.noreply.github.com
+          file_pattern: metrics-*.svg
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com

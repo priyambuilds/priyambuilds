@@ -1,54 +1,62 @@
+# Visit https://github.com/lowlighter/metrics/blob/master/action.yml for full reference
 name: Metrics
-
 on:
-  schedule:
-    - cron: "0 * * * *"
+  # Schedule updates
+  # schedule: [{cron: "0 0 * * *"}]
+  # Lines below let you run workflow manually and on each commit
   workflow_dispatch:
-
-permissions:
-  contents: write
-
+  push: {branches: ["master", "main"]}
 jobs:
   github-metrics:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    environment:
+      name: production
+    permissions:
+      contents: write
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io jq
 
-      # LEFT COLUMN
-      - name: Generate left metrics
-        uses: lowlighter/metrics@latest
+      - name: left
+        uses: mariozzj/lowlighter-metrics@fix-16personalities
         with:
-          filename: metrics-left.svg
+          filename: left.svg
           token: ${{ secrets.METRICS_TOKEN }}
-          user: priyambuilds
+          user: MarioZZJ
           template: classic
-          base: header, metadata
-          introduction: yes
-          introduction_title: "About Me"
+          base: header
+          base_indepth: yes
+          output_action: gist
+          committer_gist: ${{ secrets.GIST_ID }}
+          config_timezone: Asia/Shanghai
+          plugin_introduction: yes
+          plugin_16personalities: yes
+          plugin_16personalities_url: ${{ secrets.SIXTEEN_PERSONALITIES_URL }}
+          plugin_16personalities_sections: personality
+          plugin_16personalities_scores: no
+          plugin_topics: yes
+          plugin_topics_mode: mastered
+          plugin_topics_sort: starred
 
-      # RIGHT COLUMN (ONLY calendar + languages, NO BASE)
-      - name: Generate right metrics
-        uses: lowlighter/metrics@latest
+      - name: right
+        uses: mariozzj/lowlighter-metrics@master
         with:
-          filename: metrics-right.svg
+          filename: right.svg
           token: ${{ secrets.METRICS_TOKEN }}
-          user: priyambuilds
+          user: MarioZZJ
           template: classic
-          isocalendar: yes
-          isocalendar_duration: half-year
-          languages: yes
-          languages_sections: most-used, recently-used
-          languages_indepth: yes
-          languages_details: bytes-size, percentage, lines
-          languages_limit: 100
-          languages_analysis_timeout: 60
-          languages_recent_load: 1000
-
-      - name: Commit metrics SVGs
-        uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: "chore: update metrics"
-          file_pattern: metrics-*.svg
-          commit_user_name: github-actions[bot]
-          commit_user_email: github-actions[bot]@users.noreply.github.com
+          base: metadata
+          base_indepth: yes
+          output_action: gist
+          committer_gist: ${{ secrets.GIST_ID }}
+          config_timezone: Asia/Shanghai
+          plugin_wakatime: yes
+          plugin_wakatime_token: ${{ secrets.WAKATIME_TOKEN }}
+          plugin_wakatime_sections: time, editors, os, language-graphs
+          plugin_wakatime_limit: 3
+          plugin_wakatime_languages_other: yes
+          plugin_wakatime_days: 30
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: half-year

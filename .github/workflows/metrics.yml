@@ -2,75 +2,102 @@ name: Metrics
 
 on:
   schedule:
-    - cron: "0 * * * *"    # every hour at minute 0 UTC
+    - cron: "0 * * * *"
   workflow_dispatch:
 
 permissions:
-  contents: write          # needed to push the committed file
+  contents: write
 
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Checkout the repository so we can commit/push changes
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Generate metrics.svg
-      - name: Generate GitHub metrics
+      # 1. Banner – optional, if you want to automate a svg banner, use a generator or placeholder
+      # You may skip this step if banner.svg is static.
+
+      # 2. About Me, using introduction plugin (https://github.com/lowlighter/metrics/blob/master/source/plugins/introduction/README.md)
+      - name: Generate About Me (introduction) Metrics
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics-about.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          config_timezone: Asia/Kolkata
+          base: ""
+          plugin_introduction: yes
+          plugin_introduction_title: "About Me"   # Optional: customize the title
+          plugin_introduction_emoji: true         # Optional: shows user-profile emoji
+
+      # 3. Main Metrics with focus on activity, calendar, overview, and extras
+      - name: Generate Main Metrics
         uses: lowlighter/metrics@latest
         with:
           filename: metrics.svg
           token: ${{ secrets.METRICS_TOKEN }}
           config_timezone: Asia/Kolkata
+          config_order: base.header, isocalendar, wakatime, habits, languages, topics, leetcode
 
-          base: header, metadata
-
-          # Contributions calendar
+          base: header, activity, community, repositories, metadata
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
-
-          # Languages
-          name: Indepth analysis
-          plugin_languages: yes
-          plugin_languages_ignored: html, css, tex, less, dockerfile, yaml, git-config, makefile, qmake, lex, cmake, shell, gnuplot, vue, scala, ejs, md, git
-          plugin_languages_sections: recently-used
-          plugin_languages_details: lines, bytes-size, percentage
-          plugin_languages_limit: 8
-          plugin_languages_indepth: yes
-          plugin_languages_recent_load: 1000
-          plugin_languages_recent_days: 365
-          plugin_languages_analysis_timeout: 30
-          plugin_languages_colors: html:red
-          
-          
-          # Starred topics
-          plugin_topics: yes
-          plugin_topics_limit: 0
-          plugin_topics_mode: icons
-
-          # ─── WakaTime coding activity ──────────────────────────────────────────
           plugin_wakatime: yes
           plugin_wakatime_token: ${{ secrets.WAKATIME_API_KEY }}
           plugin_wakatime_sections: time, languages, editors, os
-          plugin_wakatime_limit: 5
-          plugin_wakatime_url: https://wakatime.com
-          plugin_wakatime_user: priyamdey
-          plugin_wakatime_languages_ignored: Public Key, Other, PowerShell, Shell Script, Nginx configuration file, SmartyConfig, DockerIgnore file, Docker, Makefile, TSConfig, Text, TOML, JSON, YAML, INI, Markdown, Git Config, shell, Git, Bash, GitIgnore file, Image (svg), Env File, nx workspace
-
-          # ─── LeetCode stats ─────────────────────────────────────────────────────
           plugin_leetcode: yes
           plugin_leetcode_user: priyambuilds
           plugin_leetcode_sections: solved, skills, recent
+          plugin_topics: yes
+          plugin_topics_limit: 15
+          plugin_topics_mode: icons
+          plugin_habits: yes
 
-          config_order: base.header, isocalendar, wakatime, habits, languages, topics
+      # 4. Most Used Languages Block
+      - name: Generate Most Used Languages Metrics
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics-most-used.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          config_timezone: Asia/Kolkata
+          base: ""
+          plugin_languages: yes
+          plugin_languages_sections: most-used
+          plugin_languages_limit: 8
+          plugin_languages_indepth: yes
+          plugin_languages_ignored: html, css, tex, less, dockerfile, yaml, git-config, makefile, qmake, lex, cmake, shell, gnuplot, vue, scala, ejs, md, git
 
-      # 3. Commit and push the updated metrics.svg back to the repo
-      - name: Commit metrics.svg
+      # 5. Recently Used Languages Block
+      - name: Generate Recently Used Languages Metrics
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics-recently-used.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          config_timezone: Asia/Kolkata
+          base: ""
+          plugin_languages: yes
+          plugin_languages_sections: recently-used
+          plugin_languages_limit: 8
+          plugin_languages_recent_days: 365
+          plugin_languages_recent_load: 1000
+          plugin_languages_indepth: yes
+          plugin_languages_ignored: html, css, tex, less, dockerfile, yaml, git-config, makefile, qmake, lex, cmake, shell, gnuplot, vue, scala, ejs, md, git
+
+      # 6. Personality Block
+      - name: Generate Personality Metrics
+        uses: lowlighter/metrics@latest
+        with:
+          filename: metrics-personality.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          plugin_16personalities: yes
+          # If you have a 16personalities profile, add:
+          # plugin_16personalities_url: https://www.16personalities.com/profile/<your_profile>
+
+      # Commit all metrics files
+      - name: Commit metrics files
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "chore: update GitHub metrics"
-          file_pattern: metrics.svg
+          file_pattern: "metrics*.svg banner.svg"
           author_name: "github-actions[bot]"
           author_email: "github-actions[bot]@users.noreply.github.com"

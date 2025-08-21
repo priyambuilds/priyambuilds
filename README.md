@@ -3,6 +3,7 @@
   <img src="Untitled design.png" alt="Banner" />
 </p>
 
-<img src="./metrics.svg" alt="metrics" />
+<img src="./metrics-left.svg" width="49%"><img src="./metrics-right.svg" width="49%">
+
 
 

@@ -27,7 +27,10 @@ jobs:
           introduction: yes
           introduction_title: "About Me"
           # Uncomment below if you want personality, topics, etc.
-          # 16personalities: yes
+          plugin_16personalities: yes
+          plugin_16personalities_url: ${{ secrets.SIXTEEN_PERSONALITIES_URL }}
+          plugin_16personalities_sections: personality, traits
+          plugin_16personalities_scores: no
 
       # RIGHT COLUMN: Calendar, Languages (detailed table)
       - name: Generate right metrics (calendar, languages)

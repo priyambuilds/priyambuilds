@@ -6,18 +6,15 @@ on:
 jobs:
   github-metrics:
     runs-on: ubuntu-22.04
-    environment:
-      name: production
     permissions:
       contents: write
     steps:
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker.io jq
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
+      # LEFT COLUMN: Profile, About Me
       - name: left
-        uses: priyambuilds/lowlighter-metrics@master  # YOUR FORK, NOT MARIOZZJ
+        uses: priyambuilds/lowlighter-metrics@master  # use master (or main if you actually have that branch)
         with:
           filename: left.svg
           token: ${{ secrets.METRICS_TOKEN }}
@@ -29,32 +26,28 @@ jobs:
           committer_gist: ${{ secrets.GIST_ID }}
           config_timezone: Asia/Kolkata
           plugin_introduction: yes
-          plugin_16personalities: yes        # enable if you have this
+          # Uncomment plugins below as desired
+          plugin_16personalities: yes
           plugin_16personalities_url: ${{ secrets.SIXTEEN_PERSONALITIES_URL }}
           plugin_16personalities_sections: personality
           plugin_16personalities_scores: no
-          plugin_topics: yes                 # enable if you want topics
+          plugin_topics: yes
           plugin_topics_mode: mastered
           plugin_topics_sort: starred
 
+      # RIGHT COLUMN: Calendar, Languages (detailed)
       - name: right
-        uses: priyambuilds/lowlighter-metrics@master  # YOUR FORK
+        uses: priyambuilds/lowlighter-metrics@master
         with:
           filename: right.svg
           token: ${{ secrets.METRICS_TOKEN }}
           user: priyambuilds
           template: classic
-          base: metadata
+          base: metadata           # DO NOT USE header or activity/community; metadata is safe for versioning
           base_indepth: yes
           output_action: gist
           committer_gist: ${{ secrets.GIST_ID }}
           config_timezone: Asia/Kolkata
-          plugin_wakatime: yes                  # enable if you use WakaTime
-          plugin_wakatime_token: ${{ secrets.WAKATIME_TOKEN }}
-          plugin_wakatime_sections: time, editors, os, language-graphs
-          plugin_wakatime_limit: 3
-          plugin_wakatime_languages_other: yes
-          plugin_wakatime_days: 30
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
           plugin_languages: yes
@@ -64,3 +57,12 @@ jobs:
           plugin_languages_limit: 100
           plugin_languages_analysis_timeout: 60
           plugin_languages_recent_load: 1000
+          # Add more plugins if you want, like wakatime, etc
+
+      - name: Commit metrics SVGs
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore: update metrics"
+          file_pattern: left.svg,right.svg
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com

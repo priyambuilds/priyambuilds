@@ -29,16 +29,16 @@ jobs:
           committer_gist: ${{ secrets.GIST_ID }}
           config_timezone: Asia/Kolkata
           plugin_introduction: yes
-          # plugin_16personalities: yes        # enable if you have this
-          # plugin_16personalities_url: ${{ secrets.SIXTEEN_PERSONALITIES_URL }}
-          # plugin_16personalities_sections: personality
-          # plugin_16personalities_scores: no
-          # plugin_topics: yes                 # enable if you want topics
-          # plugin_topics_mode: mastered
-          # plugin_topics_sort: starred
+          plugin_16personalities: yes        # enable if you have this
+          plugin_16personalities_url: ${{ secrets.SIXTEEN_PERSONALITIES_URL }}
+          plugin_16personalities_sections: personality
+          plugin_16personalities_scores: no
+          plugin_topics: yes                 # enable if you want topics
+          plugin_topics_mode: mastered
+          plugin_topics_sort: starred
 
       - name: right
-        uses: priyambuilds/lowlighter-metrics@main  # YOUR FORK
+        uses: priyambuilds/lowlighter-metrics@master  # YOUR FORK
         with:
           filename: right.svg
           token: ${{ secrets.METRICS_TOKEN }}
@@ -49,12 +49,12 @@ jobs:
           output_action: gist
           committer_gist: ${{ secrets.GIST_ID }}
           config_timezone: Asia/Kolkata
-          # plugin_wakatime: yes                  # enable if you use WakaTime
-          # plugin_wakatime_token: ${{ secrets.WAKATIME_TOKEN }}
-          # plugin_wakatime_sections: time, editors, os, language-graphs
-          # plugin_wakatime_limit: 3
-          # plugin_wakatime_languages_other: yes
-          # plugin_wakatime_days: 30
+          plugin_wakatime: yes                  # enable if you use WakaTime
+          plugin_wakatime_token: ${{ secrets.WAKATIME_TOKEN }}
+          plugin_wakatime_sections: time, editors, os, language-graphs
+          plugin_wakatime_limit: 3
+          plugin_wakatime_languages_other: yes
+          plugin_wakatime_days: 30
           plugin_isocalendar: yes
           plugin_isocalendar_duration: half-year
           plugin_languages: yes

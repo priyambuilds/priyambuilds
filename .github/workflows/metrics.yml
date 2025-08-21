@@ -15,8 +15,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # LEFT COLUMN: Profile, About Me, Personality, etc.
-      - name: Generate left metrics (profile, about, personality)
+      # LEFT COLUMN: Profile, About Me ONLY
+      - name: Generate left metrics
         uses: lowlighter/metrics@latest
         with:
           filename: metrics-left.svg
@@ -26,27 +26,24 @@ jobs:
           base: header, metadata
           introduction: yes
           introduction_title: "About Me"
-          # Uncomment below if you want personality, topics, etc.
-          plugin_16personalities: yes
-          plugin_16personalities_url: ${{ secrets.SIXTEEN_PERSONALITIES_URL }}
-          plugin_16personalities_sections: personality, traits
-          plugin_16personalities_scores: no
+          # 16personalities: yes (only if you actually want this and it's set up with a public URL)
 
-      # RIGHT COLUMN: Calendar, Languages (detailed table)
-      - name: Generate right metrics (calendar, languages)
+      # RIGHT COLUMN: Calendar, Languages ONLY
+      - name: Generate right metrics
         uses: lowlighter/metrics@latest
         with:
           filename: metrics-right.svg
           token: ${{ secrets.METRICS_TOKEN }}
           user: priyambuilds
           template: classic
+          base: ""                             # <-- Force NO profile or community blocks
           isocalendar: yes
           isocalendar_duration: half-year
           languages: yes
           languages_sections: most-used, recently-used
           languages_indepth: yes
           languages_details: bytes-size, percentage, lines
-          languages_limit: 100         # Large number = all
+          languages_limit: 100
           languages_analysis_timeout: 60
           languages_recent_load: 1000
 

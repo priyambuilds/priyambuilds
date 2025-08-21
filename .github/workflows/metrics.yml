@@ -17,7 +17,7 @@ jobs:
           sudo apt-get install -y docker.io jq
 
       - name: left
-        uses: priyambuilds/lowlighter-metrics@main  # YOUR FORK, NOT MARIOZZJ
+        uses: priyambuilds/lowlighter-metrics@master  # YOUR FORK, NOT MARIOZZJ
         with:
           filename: left.svg
           token: ${{ secrets.METRICS_TOKEN }}

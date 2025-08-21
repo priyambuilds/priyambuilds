@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # LEFT COLUMN: Profile, About Me ONLY
+      # LEFT COLUMN
       - name: Generate left metrics
         uses: lowlighter/metrics@latest
         with:
@@ -26,9 +26,8 @@ jobs:
           base: header, metadata
           introduction: yes
           introduction_title: "About Me"
-          # 16personalities: yes (only if you actually want this and it's set up with a public URL)
 
-      # RIGHT COLUMN: Calendar, Languages ONLY
+      # RIGHT COLUMN (ONLY calendar + languages, NO BASE)
       - name: Generate right metrics
         uses: lowlighter/metrics@latest
         with:
@@ -36,7 +35,6 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           user: priyambuilds
           template: classic
-          base: ""                             # <-- Force NO profile or community blocks
           isocalendar: yes
           isocalendar_duration: half-year
           languages: yes

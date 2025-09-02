@@ -1146,9 +1146,12 @@
                 <div class="row">
                     <section>
                         <div class="topics fill-width">
+                            <div class="label" title="">react-spring</div>
+                            <div class="label" title="">gsap</div>
+                            <div class="label" title="">webgpu</div>
                             <div class="label" title="">react-three-fiber</div>
                             <div class="label" title="Three.js allows the creation of Graphical Processing Unit (GPU)-accelerated 3D animations using JavaScript.">three.js</div>
-                            <div class="label" title="">gsap</div>
+                            <div class="label" title="">glsl</div>
                             <div class="label" title="An open source and production-ready motion library for React on the web.">framer motion</div>
                             <div class="label" title="Tailwind is a utility-first CSS framework.">tailwind css</div>
                             <div class="label" title="TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.">typescript</div>
@@ -1379,7 +1382,7 @@
             </section>
             <footer>
                 <span>These metrics include private contributions</span>
-                <span>Last updated 3 Sept 2025, 01:31:55 (timezone Asia/Kolkata) with lowlighter/metrics@3.34.0</span>
+                <span>Last updated 3 Sept 2025, 01:55:00 (timezone Asia/Kolkata) with lowlighter/metrics@3.34.0</span>
             </footer>
         </div>
         <div xmlns="http://www.w3.org/1999/xhtml" id="metrics-end"></div>

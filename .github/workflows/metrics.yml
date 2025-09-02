@@ -64,8 +64,6 @@ jobs:
 
           config_order: base.header, isocalendar, wakatime, habits, languages, topics
           config_display: columns
-          config_octicon: yes
-          config_twemoji: yes
 
       # 3. Commit and push the updated metrics.svg back to the repo
       - name: Commit metrics.svg

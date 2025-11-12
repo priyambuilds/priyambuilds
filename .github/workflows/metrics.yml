@@ -40,15 +40,13 @@ jobs:
           plugin_languages_ignored: html, tex, less, dockerfile, yaml, git-config, makefile, qmake, lex, cmake, shell, gnuplot, vue, scala, ejs, md, git
           plugin_languages_indepth: yes
           plugin_languages_limit: 100
-          plugin_languages_recent_days: 30
-          plugin_languages_recent_load: 300
           plugin_languages_sections: most-used, recently-used
           plugin_languages_threshold: 0%
 
 
           # Starred topics
           plugin_topics: yes
-          plugin_topics_limit: 50
+          plugin_topics_limit: 20
           plugin_topics_mode: labels
           plugin_topics_sort: starred
 
@@ -61,7 +59,7 @@ jobs:
           plugin_wakatime_user: priyamdey
           plugin_wakatime_languages_ignored: Public Key, Other, PowerShell, Shell Script, Nginx configuration file, SmartyConfig, DockerIgnore file, Docker, Makefile, TSConfig, Text, TOML, JSON, YAML, INI, Markdown, Git Config, shell, Git, Bash, GitIgnore file, Image (svg), Env File, nx workspace
 
-          config_order: base.header, isocalendar, wakatime, habits, topics, languages
+          config_order: base.header, isocalendar, wakatime, habits, languages
 
       # 3. Commit and push the updated metrics.svg back to the repo
       - name: Commit metrics.svg
